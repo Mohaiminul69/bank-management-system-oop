@@ -25,18 +25,19 @@ while True:
                 print("\n --- Invalid option, please choose between 1 and 3. ---\n")
 
     elif option == 2:
-        print(
-            "\n --- Select from Options ---\n\n1) Login as user\n2) Login as admin\n3) Go to Previous Menu\n"
-        )
-        option = int(input("Please choose an option: "))
-        if option == 1:
-            login("account_holder")
-        elif option == 2:
-            login("admin")
-        elif option == 3:
-            break
-        else:
-            print("\n --- Invalid option, please choose between 1 and 3. ---\n")
+        while True:
+            print(
+                "\n --- Select from Options ---\n\n1) Login as user\n2) Login as admin\n3) Go to Previous Menu\n"
+            )
+            option = int(input("Please choose an option: "))
+            if option == 1:
+                login("account_holder")
+            elif option == 2:
+                login("admin")
+            elif option == 3:
+                break
+            else:
+                print("\n --- Invalid option, please choose between 1 and 3. ---\n")
 
     elif option == 3:
         print("\n --- Thank you for banking with us. ---")

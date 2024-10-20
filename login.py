@@ -1,5 +1,6 @@
 from bank import rich_bank
 from user_menu import user_menu
+from admin_menu import admin_menu
 
 
 def login(user_type):
@@ -16,7 +17,7 @@ def login(user_type):
             while admin.password != password:
                 print("\n --- Sorry password did not match ---\n")
                 password = input("Enter re enter password: ")
-            print(admin.admin_id)
+            return admin_menu(admin)
     else:
         print("\n --- Please enter your Account Number and password to login ---\n")
         account = None

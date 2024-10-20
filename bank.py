@@ -21,6 +21,15 @@ class Bank:
                 return admin
         return None
 
+    def see_account_holders_list(self):
+        print("\n --- List of Account Holders ---\n")
+        print(f" #\tName\tAccount Number\tBalance")
+        for idx, account in enumerate(self.accounts):
+            print(
+                f" {idx+1}\t{account.name}\t{account.account_number}\t{account.balance}"
+            )
+        print("")
+
     @property
     def total_accounts(self):
         return len(self.accounts)

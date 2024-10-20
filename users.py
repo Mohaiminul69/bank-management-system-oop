@@ -58,5 +58,8 @@ class Admin(User):
         self.admin_id = f"{rich_bank.total_admins + 1:04}"
         rich_bank.add_admin(self)
 
+    def get_users_list(self):
+        rich_bank.see_account_holders_list()
+
     def __repr__(self):
-        return f"An admin has been created with the name of {self.name}, and admin id {self.admin_id}"
+        return f"\n- An admin has been created with the name of {self.name}\n- Admin Id: {self.admin_id}\n* Make sure to remember the ADMIN ID and PASSWORD to login"
