@@ -24,14 +24,20 @@ class AccountHolder(User):
     def make_deposit(self, deposit_amount):
         self.balance += deposit_amount
         print(
-            f" --- $ {deposit_amount} has been deposited to your account ---\n --- Current balance is {self.balance}"
+            f"\n --- ${deposit_amount} has been deposited to your account ---\n --- Current balance is ${self.balance} ---\n"
+        )
+
+    def make_withdraw(self, withdraw_amount):
+        self.balance -= withdraw_amount
+        print(
+            f"\n --- ${withdraw_amount} has been withdrawn from your account ---\n --- Current balance is ${self.balance} ---\n"
         )
 
     def check_balance(self):
         print(self.balance)
 
     def __repr__(self):
-        return f"\n An account has been created with the name of {self.name}, and account number {self.account_number}, {self.account_type}"
+        return f"\n- An account has been created with the name of {self.name}\n- Account number: {self.account_number}\n- Account type: {self.account_type} account\n* Make sure to remember the ACCOUNT NUMBER and PASSWORD to login"
 
 
 class Admin(User):
