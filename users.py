@@ -1,6 +1,7 @@
 from abc import ABC
 from bank import rich_bank
 from datetime import datetime
+from current_time import current_time
 
 
 class User(ABC):
@@ -16,6 +17,7 @@ class AccountHolder(User):
         super().__init__(name, email, address, password)
         self.account_type = account_type
         self.balance = 0
+        self.history = []
         self.account_number = f"{datetime.now().year}" + (
             f"{rich_bank.total_accounts + 1:04}"
         )
@@ -23,15 +25,25 @@ class AccountHolder(User):
 
     def make_deposit(self, deposit_amount):
         self.balance += deposit_amount
+        statement = f"${deposit_amount} has been deposited on {current_time()}"
+        self.history.append(statement)
         print(
             f"\n --- ${deposit_amount} has been deposited to your account ---\n --- Current balance is ${self.balance} ---\n"
         )
 
     def make_withdraw(self, withdraw_amount):
         self.balance -= withdraw_amount
+        statement = f"${withdraw_amount} has been withdrawn on {current_time()}"
+        self.history.append(statement)
         print(
             f"\n --- ${withdraw_amount} has been withdrawn from your account ---\n --- Current balance is ${self.balance} ---\n"
         )
+
+    def get_transaction_history(self):
+        print("\n --- Your Transaction History ---\n")
+        for statement in self.history:
+            print(f" - {statement}")
+        print("")
 
     def check_balance(self):
         print(self.balance)

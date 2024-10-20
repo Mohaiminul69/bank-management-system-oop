@@ -25,6 +25,9 @@ def user_menu(user):
                 f"\n --- Current Balance ---\n\n Your available balance is: ${user.balance}\n"
             )
 
+        elif option == 4:
+            user.get_transaction_history()
+
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")
             return
