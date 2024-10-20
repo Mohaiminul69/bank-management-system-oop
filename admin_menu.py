@@ -24,7 +24,7 @@ def admin_menu(admin):
             admin.get_users_list()
 
         elif option == 4:
-            admin.get_transaction_history()
+            admin.get_total_balance_of_bank()
 
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")

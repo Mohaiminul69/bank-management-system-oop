@@ -2,6 +2,7 @@ class Bank:
     def __init__(self):
         self.accounts = []
         self.admins = []
+        self.__balance = 70000000
 
     def add_account(self, account):
         self.accounts.append(account)
@@ -29,6 +30,9 @@ class Bank:
                 f" {idx+1}\t{account.name}\t{account.account_number}\t{account.balance}"
             )
         print("")
+
+    def get_total_balance_of_bank(self):
+        print(f"\n --- Total Balance of Bank: ${self.__balance} ---\n")
 
     @property
     def total_accounts(self):
