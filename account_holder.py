@@ -28,7 +28,8 @@ class AccountHolder(User):
 
     def make_withdraw(self, withdraw_amount):
         self.balance -= withdraw_amount
-        rich_bank.decrease_balance(withdraw_amount)
+        if not self.loan_amount:
+            rich_bank.decrease_balance(withdraw_amount)
         statement = f"${withdraw_amount} has been withdrawn on {current_time()}"
         self.history.append(statement)
         print(

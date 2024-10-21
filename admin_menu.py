@@ -24,9 +24,6 @@ def admin_menu(admin):
                         "\n --- Account does not exist ---\n --- Please enter a valid account number ---\n"
                     )
                 else:
-                    print(
-                        f"\n *** Account of {account.name} with account number {account.account_number} has been deleted successfully ***\n *** And ${account.balance} has been returned to the account holder ***\n"
-                    )
                     rich_bank.delete_account(account)
 
         elif option == 3:
