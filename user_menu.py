@@ -1,3 +1,6 @@
+from bank import rich_bank
+
+
 def user_menu(user):
     print(f"\n ### Welcome to Rich Bank {user.name} ###\n")
     while True:
@@ -29,14 +32,28 @@ def user_menu(user):
             user.get_transaction_history()
 
         elif option == 6:
-            print(
-                f"\n *** You can take up to $10000 as loan at once ***\n *** You can take loan upto {user.available_loan} more time ***\n"
-            )
-            loan_amount = int(input("Enter the amount you want to take as loan: "))
-            while loan_amount > 10000:
-                print(f"\n *** You cannot take more than $10000 as loan ***\n")
-                loan_amount = int(input("Enter the amount you want to take as loan: "))
-            user.take_load(loan_amount)
+            if rich_bank.is_loanable:
+                if user.available_loan:
+                    print(
+                        f"\n *** You can take up to $10000 as loan at once ***\n *** You can take loan upto {user.available_loan} more time ***\n"
+                    )
+                    loan_amount = int(
+                        input("Enter the amount you want to take as loan: ")
+                    )
+                    while loan_amount > 10000:
+                        print(f"\n *** You cannot take more than $10000 as loan ***\n")
+                        loan_amount = int(
+                            input("Enter the amount you want to take as loan: ")
+                        )
+                    user.take_load(loan_amount)
+                else:
+                    print(
+                        "\n *** Your available loan quota has been used ***\n *** You can not take any more loans ***\n"
+                    )
+            else:
+                print(
+                    "\n *** The bank is not giving loan at the moment ***\n *** Please try again later ***\n"
+                )
 
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")

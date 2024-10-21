@@ -4,6 +4,7 @@ class Bank:
         self.admins = []
         self.__balance = 70000000
         self.__total_accounts_till_now = 0
+        self.__is_loanable = True
 
     def add_account(self, account):
         self.__total_accounts_till_now += 1
@@ -49,6 +50,22 @@ class Bank:
 
     def decrease_balance(self, amount):
         self.__balance -= amount
+
+    @property
+    def is_loanable(self):
+        return self.__is_loanable
+
+    @is_loanable.setter
+    def is_loanable(self, state):
+        self.__is_loanable = state
+        if state:
+            print(
+                "\n *** The bank is going to give loan to account holders from now on ***\n"
+            )
+        else:
+            print(
+                "\n *** The bank is not going to give loan to account holders from now on ***\n"
+            )
 
     @property
     def total_accounts_till_now(self):

@@ -36,6 +36,16 @@ def admin_menu(admin):
             balance = admin.get_total_balance_of_bank()
             print(f"\n --- Total Balance of Bank: ${balance} ---\n")
 
+        elif option == 6:
+            print(
+                f"\n --- Please select an option ---\n\n1) Turn on bank loan policy\n2) Turn off bank loan policy\n"
+            )
+            option = int(input("Enter your account number: "))
+            if option == 1:
+                admin.change_loan_state(True)
+            elif option == 2:
+                admin.change_loan_state(False)
+
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")
             return
