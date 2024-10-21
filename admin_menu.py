@@ -1,4 +1,5 @@
 from create_account import create_account
+from bank import rich_bank
 
 
 def admin_menu(admin):
@@ -13,11 +14,20 @@ def admin_menu(admin):
             create_account("account_holder", True)
 
         elif option == 2:
-            withdraw_amount = int(input("\nEnter the amount you want to withdraw: "))
-            while withdraw_amount > admin.balance:
-                print(f"\n *** You cannot withdraw more than {admin.balance} ***\n")
-                withdraw_amount = int(input("Enter the amount you want to withdraw: "))
-            admin.make_withdraw(withdraw_amount)
+            print("\n --- Please enter account number you want to delete ---\n")
+            account = None
+            while account == None:
+                account_number = input("Enter your account number: ")
+                account = rich_bank.find_account(account_number)
+                if account == None:
+                    print(
+                        "\n --- Account does not exist ---\n --- Please enter a valid account number ---\n"
+                    )
+                else:
+                    print(
+                        f"\n *** Account of {account.name} with account number {account.account_number} has been deleted successfully ***\n *** And ${account.balance} has been returned to the account holder ***\n"
+                    )
+                    rich_bank.delete_account(account)
 
         elif option == 3:
             admin.get_users_list()

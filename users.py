@@ -19,7 +19,7 @@ class AccountHolder(User):
         self.balance = 0
         self.history = []
         self.account_number = f"{datetime.now().year}" + (
-            f"{rich_bank.total_accounts + 1:04}"
+            f"{rich_bank.total_accounts_till_now + 1:04}"
         )
         rich_bank.add_account(self)
 

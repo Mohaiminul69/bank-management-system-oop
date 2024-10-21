@@ -3,9 +3,18 @@ class Bank:
         self.accounts = []
         self.admins = []
         self.__balance = 70000000
+        self.__total_accounts_till_now = 0
 
     def add_account(self, account):
+        self.__total_accounts_till_now += 1
         self.accounts.append(account)
+
+    def delete_account(self, account):
+        self.__balance -= account.balance
+        updated_accounts = list(
+            filter(lambda x: x.account_number != account.account_number, self.accounts)
+        )
+        self.accounts = updated_accounts
 
     def add_admin(self, account):
         self.admins.append(account)
@@ -42,8 +51,8 @@ class Bank:
         self.__balance -= amount
 
     @property
-    def total_accounts(self):
-        return len(self.accounts)
+    def total_accounts_till_now(self):
+        return self.__total_accounts_till_now
 
     @property
     def total_admins(self):
