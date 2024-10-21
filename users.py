@@ -25,6 +25,7 @@ class AccountHolder(User):
 
     def make_deposit(self, deposit_amount):
         self.balance += deposit_amount
+        rich_bank.increase_balance(deposit_amount)
         statement = f"${deposit_amount} has been deposited on {current_time()}"
         self.history.append(statement)
         print(
@@ -33,6 +34,7 @@ class AccountHolder(User):
 
     def make_withdraw(self, withdraw_amount):
         self.balance -= withdraw_amount
+        rich_bank.decrease_balance(withdraw_amount)
         statement = f"${withdraw_amount} has been withdrawn on {current_time()}"
         self.history.append(statement)
         print(
@@ -49,7 +51,7 @@ class AccountHolder(User):
         print(self.balance)
 
     def __repr__(self):
-        return f"\n- An account has been created with the name of {self.name}\n- Account number: {self.account_number}\n- Account type: {self.account_type} account\n* Make sure to remember the ACCOUNT NUMBER and PASSWORD to login"
+        return f"\n- An account has been created with the name of {self.name}\n- Account number: {self.account_number}\n- Account type: {self.account_type} account\n* Make sure to remember the ACCOUNT NUMBER and PASSWORD to login\n"
 
 
 class Admin(User):
@@ -62,7 +64,7 @@ class Admin(User):
         rich_bank.see_account_holders_list()
 
     def get_total_balance_of_bank(self):
-        rich_bank.get_total_balance_of_bank()
+        return rich_bank.balance
 
     def __repr__(self):
         return f"\n- An admin has been created with the name of {self.name}\n- Admin Id: {self.admin_id}\n* Make sure to remember the ADMIN ID and PASSWORD to login"

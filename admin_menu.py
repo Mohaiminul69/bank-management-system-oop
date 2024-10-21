@@ -1,3 +1,6 @@
+from create_account import create_account
+
+
 def admin_menu(admin):
     print(f"\n ### Welcome to Rich Bank Admin {admin.name} ###\n")
     while True:
@@ -7,11 +10,7 @@ def admin_menu(admin):
         option = int(input("Please Choose an Option: "))
 
         if option == 1:
-            deposit_amount = int(input("\nEnter the amount you want to deposit: "))
-            while deposit_amount < 1:
-                print("\n *** You cannot deposit less than $1 ***\n")
-                deposit_amount = int(input("Enter the amount you want to deposit: "))
-            admin.make_deposit(deposit_amount)
+            create_account("account_holder", True)
 
         elif option == 2:
             withdraw_amount = int(input("\nEnter the amount you want to withdraw: "))
@@ -24,7 +23,8 @@ def admin_menu(admin):
             admin.get_users_list()
 
         elif option == 4:
-            admin.get_total_balance_of_bank()
+            balance = admin.get_total_balance_of_bank()
+            print(f"\n --- Total Balance of Bank: ${balance} ---\n")
 
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")

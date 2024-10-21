@@ -31,8 +31,15 @@ class Bank:
             )
         print("")
 
-    def get_total_balance_of_bank(self):
-        print(f"\n --- Total Balance of Bank: ${self.__balance} ---\n")
+    @property
+    def balance(self):
+        return self.__balance
+
+    def increase_balance(self, amount):
+        self.__balance += amount
+
+    def decrease_balance(self, amount):
+        self.__balance -= amount
 
     @property
     def total_accounts(self):

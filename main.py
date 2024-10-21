@@ -1,9 +1,9 @@
 from create_account import create_account
 from login import login
 
-
+print("")
 while True:
-    print("\n --- Select from Options ---\n\n1) Create an account\n2) Login\n3) Exit\n")
+    print(" --- Select from Options ---\n\n1) Create an account\n2) Login\n3) Exit\n")
 
     option = int(input("Please Choose an Option: "))
 

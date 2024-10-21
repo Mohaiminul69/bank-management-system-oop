@@ -1,10 +1,16 @@
 from users import AccountHolder, Admin
 
 
-def create_account(user_type):
-    name = input("\nEnter your name: ")
-    email = input("Enter your email: ")
-    address = input("Enter your address: ")
+def create_account(user_type, is_admin=False):
+    name = input(
+        "\nEnter account holder's name: " if is_admin else "\nEnter your name: "
+    )
+    email = input(
+        "Enter account holder's email: " if is_admin else "Enter your email: "
+    )
+    address = input(
+        "Enter account holder's address: " if is_admin else "Enter your address: "
+    )
     password = input("Enter a password: ")
     confirmPassword = input("Confirm password: ")
 
