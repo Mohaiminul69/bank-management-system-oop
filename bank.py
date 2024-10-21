@@ -34,10 +34,10 @@ class Bank:
 
     def see_account_holders_list(self):
         print("\n --- List of Account Holders ---\n")
-        print(f" #\tName\tAccount Number\tBalance")
+        print(f" #\tName\tAccount Number\tBalance\tLoan Taken")
         for idx, account in enumerate(self.accounts):
             print(
-                f" {idx+1}\t{account.name}\t{account.account_number}\t{account.balance}"
+                f" {idx+1}\t{account.name}\t{account.account_number}\t{account.balance}\t{account.loan_amount}"
             )
         print("")
 

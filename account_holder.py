@@ -41,6 +41,7 @@ class AccountHolder(User):
         self.history.append(statement)
         self.balance += amount
         self.available_loan -= 1
+        self.loan_amount += amount
         print(
             f"\n --- ${amount} has been transfered to your account as loan ---\n --- You can take loan up to {self.available_loan} more time ---\n"
         )
