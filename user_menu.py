@@ -28,6 +28,16 @@ def user_menu(user):
         elif option == 4:
             user.get_transaction_history()
 
+        elif option == 6:
+            print(
+                f"\n *** You can take up to $10000 as loan at once ***\n *** You can take loan upto {user.available_loan} more time ***\n"
+            )
+            loan_amount = int(input("Enter the amount you want to take as loan: "))
+            while loan_amount > 10000:
+                print(f"\n *** You cannot take more than $10000 as loan ***\n")
+                loan_amount = int(input("Enter the amount you want to take as loan: "))
+            user.take_load(loan_amount)
+
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")
             return

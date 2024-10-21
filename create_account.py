@@ -1,4 +1,5 @@
-from users import AccountHolder, Admin
+from admin import  Admin
+from account_holder import AccountHolder
 
 
 def create_account(user_type, is_admin=False):
