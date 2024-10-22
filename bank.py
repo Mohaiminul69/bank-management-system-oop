@@ -2,7 +2,7 @@ class Bank:
     def __init__(self):
         self.accounts = []
         self.admins = []
-        self.__balance = 70000000
+        self.__balance = 70000
         self.__total_accounts_till_now = 0
         self.__is_loanable = True
         self.__total_loan_taken = 0

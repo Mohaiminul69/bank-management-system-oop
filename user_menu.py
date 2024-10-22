@@ -19,9 +19,14 @@ def user_menu(user):
         elif option == 2:
             withdraw_amount = int(input("\nEnter the amount you want to withdraw: "))
             while withdraw_amount > user.balance:
-                print(f"\n *** You cannot withdraw more than {user.balance} ***\n")
+                print(
+                    f"\n *** Withdrawal amount exceeded, You cannot withdraw more than {user.balance} ***\n"
+                )
                 withdraw_amount = int(input("Enter the amount you want to withdraw: "))
-            user.make_withdraw(withdraw_amount)
+            if withdraw_amount > rich_bank.balance:
+                print("\n *** We are extremly sorry, the bank is bankrupt. ***\n")
+            else:
+                user.make_withdraw(withdraw_amount)
 
         elif option == 3:
             print(
@@ -72,7 +77,12 @@ def user_menu(user):
                         loan_amount = int(
                             input("Enter the amount you want to take as loan: ")
                         )
-                    user.take_loan(loan_amount)
+                    if loan_amount > rich_bank.balance:
+                        print(
+                            "\n *** We are extremly sorry, the bank is bankrupt. ***\n"
+                        )
+                    else:
+                        user.take_loan(loan_amount)
                 else:
                     print(
                         "\n *** Your available loan quota has been used ***\n *** You can not take any more loans ***\n"
