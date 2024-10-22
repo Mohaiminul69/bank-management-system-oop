@@ -31,6 +31,33 @@ def user_menu(user):
         elif option == 4:
             user.get_transaction_history()
 
+        elif option == 5:
+            print("\n --- Please enter Beneficiary's Account Number ---\n")
+            while True:
+                account_number = input("Enter beneficiary's account number: ")
+                account = rich_bank.find_account(account_number)
+                if account == None:
+                    print(
+                        "\n --- Account does not exist ---\n --- Please enter a valid account number ---\n"
+                    )
+                    continue
+                if account.account_number == user.account_number:
+                    print(
+                        "\n --- This is your account number ---\n --- Please enter beneficiary's account number ---\n"
+                    )
+                    continue
+                else:
+                    transfer_amount = int(input("Enter transfer amount: "))
+                    while transfer_amount > user.balance:
+                        print(
+                            f"\n *** You cannot transfer more than {user.balance} ***\n"
+                        )
+                        transfer_amount = int(
+                            input("Enter the amount you want to transfer: ")
+                        )
+                    rich_bank.make_transfer(user, account, transfer_amount)
+                    break
+
         elif option == 6:
             if rich_bank.is_loanable:
                 if user.available_loan:

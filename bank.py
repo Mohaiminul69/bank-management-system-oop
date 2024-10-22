@@ -36,6 +36,13 @@ class Bank:
         )
         self.accounts = updated_accounts
 
+    def make_transfer(self, user_account, beneficiary_account, amount):
+        user_account.balance -= amount
+        beneficiary_account.balance += amount
+        print(
+            f"\n --- ${amount} has been transfered to {beneficiary_account.name}, account number: {beneficiary_account.account_number} ---\n --- Your current balance is {user_account.balance} ---\n"
+        )
+
     def add_admin(self, account):
         self.admins.append(account)
 
