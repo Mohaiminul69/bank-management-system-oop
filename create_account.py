@@ -1,4 +1,4 @@
-from admin import  Admin
+from admin import Admin
 from account_holder import AccountHolder
 
 
@@ -13,10 +13,14 @@ def create_account(user_type, is_admin=False):
         "Enter account holder's address: " if is_admin else "Enter your address: "
     )
     password = input("Enter a password: ")
+    while len(password) == 0:
+        print("\n --- Password cannot be of length 0 ---\n")
+        password = input("Enter a password: ")
+
     confirmPassword = input("Confirm password: ")
 
     while password != confirmPassword:
-        print("\n --- Please re enter password ---\n")
+        print("\n --- Password did not match ---\n --- Please re enter password ---\n")
         password = input("Enter a password: ")
         confirmPassword = input("Confirm password: ")
 
