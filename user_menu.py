@@ -72,7 +72,7 @@ def user_menu(user):
                         loan_amount = int(
                             input("Enter the amount you want to take as loan: ")
                         )
-                    user.take_load(loan_amount)
+                    user.take_loan(loan_amount)
                 else:
                     print(
                         "\n *** Your available loan quota has been used ***\n *** You can not take any more loans ***\n"

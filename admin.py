@@ -14,6 +14,9 @@ class Admin(User):
     def get_total_balance_of_bank(self):
         return rich_bank.balance
 
+    def get_total_loan_amount(self):
+        rich_bank.see_total_loan_amount()
+
     def change_loan_state(self, state):
         rich_bank.is_loanable = state
 

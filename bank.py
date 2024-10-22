@@ -5,6 +5,7 @@ class Bank:
         self.__balance = 70000000
         self.__total_accounts_till_now = 0
         self.__is_loanable = True
+        self.__total_loan_taken = 0
 
     def add_account(self, account):
         self.__total_accounts_till_now += 1
@@ -43,6 +44,10 @@ class Bank:
             f"\n --- ${amount} has been transfered to {beneficiary_account.name}, account number: {beneficiary_account.account_number} ---\n --- Your current balance is {user_account.balance} ---\n"
         )
 
+    def give_loan(self, amount):
+        self.__total_loan_taken += amount
+        self.__balance -= amount
+
     def add_admin(self, account):
         self.admins.append(account)
 
@@ -66,6 +71,9 @@ class Bank:
                 f" {idx+1}\t{account.name}\t{account.account_number}\t{account.balance}\t{account.loan_amount}"
             )
         print("")
+
+    def see_total_loan_amount(self):
+        print(f"\n --- Total Loan Taken from Bank: ${self.__total_loan_taken} ---\n")
 
     @property
     def balance(self):

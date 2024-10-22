@@ -36,8 +36,8 @@ class AccountHolder(User):
             f"\n --- ${withdraw_amount} has been withdrawn from your account ---\n --- Current balance is ${self.balance} ---\n"
         )
 
-    def take_load(self, amount):
-        rich_bank.decrease_balance(amount)
+    def take_loan(self, amount):
+        rich_bank.give_loan(amount)
         statement = f"${amount} has been taken as loan on {current_time()}"
         self.history.append(statement)
         self.balance += amount
