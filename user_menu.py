@@ -23,7 +23,7 @@ def user_menu(user):
                     f"\n *** Withdrawal amount exceeded, You cannot withdraw more than {user.balance} ***\n"
                 )
                 withdraw_amount = int(input("Enter the amount you want to withdraw: "))
-            if withdraw_amount > rich_bank.balance:
+            if rich_bank.is_bankrupt or withdraw_amount > rich_bank.balance:
                 print("\n *** We are extremly sorry, the bank is bankrupt. ***\n")
             else:
                 user.make_withdraw(withdraw_amount)
@@ -40,10 +40,12 @@ def user_menu(user):
             print("\n --- Please enter Beneficiary's Account Number ---\n")
             while True:
                 account_number = input("Enter beneficiary's account number: ")
+                if account_number == "0":
+                    break
                 account = rich_bank.find_account(account_number)
                 if account == None:
                     print(
-                        "\n --- Account does not exist ---\n --- Please enter a valid account number ---\n"
+                        "\n --- Account does not exist ---\n --- Please enter a valid account number or enter 0 to go back ---\n"
                     )
                     continue
                 if account.account_number == user.account_number:
@@ -60,37 +62,50 @@ def user_menu(user):
                         transfer_amount = int(
                             input("Enter the amount you want to transfer: ")
                         )
-                    rich_bank.make_transfer(user, account, transfer_amount)
-                    break
+                    if rich_bank.is_bankrupt:
+                        print(
+                            "\n *** The bank has gone bankrupt ***\n *** You cannot make any transaction at the moment ***\n"
+                        )
+                        break
+                    else:
+                        rich_bank.make_transfer(user, account, transfer_amount)
+                        break
 
         elif option == 6:
-            if rich_bank.is_loanable:
-                if user.available_loan:
-                    print(
-                        f"\n *** You can take up to $10000 as loan at once ***\n *** You can take loan upto {user.available_loan} more time ***\n"
-                    )
-                    loan_amount = int(
-                        input("Enter the amount you want to take as loan: ")
-                    )
-                    while loan_amount > 10000:
-                        print(f"\n *** You cannot take more than $10000 as loan ***\n")
+            if rich_bank.is_bankrupt:
+                print(
+                    "\n *** The bank has gone bankrupt ***\n *** You cannot make any transaction at the moment ***\n"
+                )
+            else:
+                if rich_bank.is_loanable:
+                    if user.available_loan:
+                        print(
+                            f"\n *** You can take up to $10000 as loan at once ***\n *** You can take loan upto {user.available_loan} more time ***\n"
+                        )
                         loan_amount = int(
                             input("Enter the amount you want to take as loan: ")
                         )
-                    if loan_amount > rich_bank.balance:
-                        print(
-                            "\n *** We are extremly sorry, the bank is bankrupt. ***\n"
-                        )
+                        while loan_amount > 10000:
+                            print(
+                                f"\n *** You cannot take more than $10000 as loan ***\n"
+                            )
+                            loan_amount = int(
+                                input("Enter the amount you want to take as loan: ")
+                            )
+                        if loan_amount > rich_bank.balance:
+                            print(
+                                "\n *** We are extremly sorry, the bank is bankrupt. ***\n"
+                            )
+                        else:
+                            user.take_loan(loan_amount)
                     else:
-                        user.take_loan(loan_amount)
+                        print(
+                            "\n *** Your available loan quota has been used ***\n *** You can not take any more loans ***\n"
+                        )
                 else:
                     print(
-                        "\n *** Your available loan quota has been used ***\n *** You can not take any more loans ***\n"
+                        "\n *** The bank is not giving loan at the moment ***\n *** Please try again later ***\n"
                     )
-            else:
-                print(
-                    "\n *** The bank is not giving loan at the moment ***\n *** Please try again later ***\n"
-                )
 
         elif option == 7:
             print("\n --- Thank you for banking with us. ---")

@@ -10,7 +10,7 @@ def login(user_type):
         admin = rich_bank.find_admin(admin_id)
         if admin == None:
             print(
-                "\n --- Admin does not exist ---\n --- Please enter a valid admin id ---\n"
+                "\n --- Admin does not exist ---\n --- Please enter a valid admin id ---"
             )
         else:
             password = input("Enter your password: ")
@@ -23,10 +23,12 @@ def login(user_type):
         account = None
         while account == None:
             account_number = input("Enter your account number: ")
+            if account_number == "0":
+                break
             account = rich_bank.find_account(account_number)
             if account == None:
                 print(
-                    "\n --- Account does not exist ---\n --- Please enter a valid account number ---\n"
+                    "\n *** Account does not exist ***\n *** Please enter a valid account number, or enter 0 to go back ***\n"
                 )
                 continue
             else:

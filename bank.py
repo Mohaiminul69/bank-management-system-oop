@@ -6,6 +6,7 @@ class Bank:
         self.__total_accounts_till_now = 0
         self.__is_loanable = True
         self.__total_loan_taken = 0
+        self.__is_bankrupt = False
 
     def add_account(self, account):
         self.__total_accounts_till_now += 1
@@ -100,6 +101,18 @@ class Bank:
             print(
                 "\n *** The bank is not going to give loan to account holders from now on ***\n"
             )
+
+    @property
+    def is_bankrupt(self):
+        return self.__is_bankrupt
+
+    @is_bankrupt.setter
+    def is_bankrupt(self, state):
+        self.__is_bankrupt = state
+        if state:
+            print("\n *** The bank is bankrupt ***\n")
+        else:
+            print("\n *** The bank is not bankrupt anymore ***\n")
 
     @property
     def total_accounts_till_now(self):
