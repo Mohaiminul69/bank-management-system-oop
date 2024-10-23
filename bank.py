@@ -16,12 +16,14 @@ class Bank:
         if account.loan_amount:
             if account.loan_amount > account.balance:
                 self.__balance += account.balance
+                self.__total_loan_taken -= account.balance
                 remaining_loan = account.loan_amount - account.balance
                 print(
                     f"\n *** Account of {account.name} with account number {account.account_number} has been deleted successfully ***\n *** And ${account.balance} has been returned to the bank ***\n *** And $0 has been returned to the account holder ***\n *** Remaining loan amount of ${remaining_loan} is still owed to the bank ***\n"
                 )
             else:
                 self.__balance += account.loan_amount
+                self.__total_loan_taken -= account.loan_amount
                 account.balance -= account.loan_amount
                 print(
                     f"\n *** Account of {account.name} with account number {account.account_number} has been deleted successfully ***\n *** And ${account.loan_amount} has been returned to the bank ***\n *** And ${account.balance} has been returned to the account holder ***\n"
